@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <base href="../../../">
+
+  <!-- TODO CHANGE FOLDER STRUCTURE -->
+
+  <title>ATOS DDU</title>
+  <link rel="icon" href="resource/favicon.ico">
+
+
+  <!-- Libraries -->
+  <script src="lib/lodash/lodash.min.js"></script>
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular/angular-animate.min.js"></script>
+  <script src="lib/angular-ui/angular-ui-router.min.js"></script>
+  <script src="lib/angular-ui/ui-bootstrap-tpls.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <script src="lib/bootstrap3-dialog/js/bootstrap-dialog.min.js"></script>
+  <link href="lib/bootstrap3-dialog/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css">
+  <script src="lib/angular-google-chart/ng-google-chart.min.js"></script>
+
+
+
+  <!--Base styling-->
+  <link rel="stylesheet/less" href="resource/base.less" type="text/css"/>
+  <link rel="stylesheet/less" href="resource/breadcrumb.less" type="text/css"/>
+
+  <!--Constants-->
+  <script src="constant/data-type.js"></script>
+  <script src="constant/constants.js"></script>
+  <script src="refdata/refdata.js"></script>
+  <script src="refdata/error-text.js"></script>
+
+  <!--Ref Data-->
+
+  <!--Application-->
+  <script src="app.js"></script>
+  <script src="app-controller.js"></script>
+  <script src="app-state-manager.js"></script>
+
+  <!--Directives-->
+  <script src="directive/match.js"></script>
+
+  <!--Services-->
+  <script src="../mock/service/security/security-manager.js"></script>
+
+  <script src="service/security/security-store.js"></script>
+  <script src="service/security/http-interceptor.js"></script>
+  <script src="service/dal/dal.js"></script>
+  <script src="service/dal/activate.js"></script>
+  <script src="../mocks/service/dal/register.js"></script>
+  <script src="../mocks/service/dal/sprint.js"></script>
+  <script src="../mocks/service/dal/project.js"></script>
+  <script src="../mocks/service/dal/user.js"></script>
+
+  <script src="service/repository/repository.js"></script>
+  <script src="service/repository/project.js"></script>
+  <script src="service/repository/sprint.js"></script>
+
+  <!--Components-->
+  <script src="component/dashboard/combo-chart-revenue-cost/combo-chart-revenue-cost-controller.js"></script>
+  <script src="component/dashboard/pie-chart-requirement-status/pie-chart-requirement-status-controller.js"></script>
+  <script src="component/dashboard/pie-chart-sprint-status/pie-chart-sprint-status-controller.js"></script>
+  <script src="component/dashboard/bar-chart-requirement-users/bar-chart-requirement-users-controller.js"></script>
+  <script src="component/dashboard/stepped-area-progress/stepped-area-progress-controller.js"></script>
+  <link rel="stylesheet/less" href="component/dashboard/dashboard.less"/>
+
+
+  <!--Features-->
+  <script src="feature/login/login-controller.js"></script>
+  <link rel="stylesheet/less" href="feature/login/login.less" type="text/css"/>
+
+  <script src="feature/register/register-controller.js"></script>
+  <script src="feature/register/register-terms-and-conditions-controller.js"></script>
+  <link rel="stylesheet/less" href="feature/register/register.less" type="text/css"/>
+
+  <script src="feature/activate/activate-controller.js"></script>
+  <link rel="stylesheet/less" href="feature/activate/activate.less" type="text/css"/>
+
+  <script src="../mocks/mockFeature/project/project-state-manager.js"></script>
+  <script src="../mocks/mockFeature/project/project-controller.js"></script>
+
+  <script src="feature/home/home-controller.js"></script>
+  <link rel="stylesheet/less" href="feature/home/home.less" type="text/css"/>
+
+  <script src="feature/myDetails/my-details-controller.js"></script>
+  <link rel="stylesheet/less" href="feature/myDetails/my-details.less" type="text/css"/>
+
+  <script src="feature/changePassword/change-password-controller.js"></script>
+  <link rel="stylesheet/less" href="feature/changePassword/change-password.less" type="text/css"/>
+
+  <script src="feature/userPreferences/user-homepage-preferences-controller.js"></script>
+  <link rel="stylesheet/less" href="feature/userPreferences/user-preferences.less" type="text/css"/>
+
+  <script src="feature/documentRepository/document-repository-controller.js"></script>
+
+ <!-- <script src="feature/sprint/sprint-state-manager.js"></script>
+  <script src="feature/sprint/sprint-controller.js"></script>
+  <script src="feature/sprint/sprint-form-controller.js"></script>
+  <link rel="stylesheet/less" href="feature/sprint/sprint.less" type="text/css"/> -->
+
+
+  <script src="feature/requirements/requirement/requirement-manage-controller.js"></script>
+  <script src="feature/requirements/requirement/requirement-item-controller.js"></script>
+  <script src="feature/requirements/requirement/requirement-form-controller.js"></script>
+
+  <link rel="stylesheet/less" href="feature/requirements/requirement/requirement.less" type="text/css"/>
+
+  <script src="feature/joinProject/project-controller.js"></script>
+  <script src="feature/joinProject/join-project-state-manager.js"></script>
+  <link rel="stylesheet/less" href="feature/joinProject/project.less" type="text/css"/>
+
+  <script src="feature/requirements/requirements-state-manager.js"></script>
+  <script src="feature/requirements/requirements-dashboard-controller.js"></script>
+  <script src="feature/requirements/requirements-home-controller.js"></script>
+
+  <script src="feature/requirements/sprint/sprint-form-controller.js"></script>
+  <script src="feature/requirements/sprint/sprint-item-controller.js"></script>
+  <script src="feature/requirements/sprint/sprint-manage-controller.js"></script>
+
+  <script src="feature/developer/viewSprint/viewSprint-item-controller.js"></script>
+  <script src="feature/developer/viewSprint/viewSprint-manage-controller.js"></script>
+
+  <script src="feature/developer/developer-state-manager.js"></script>
+  <script src="feature/developer/developer-dashboard-controller.js"></script>
+  <script src="feature/developer/developer-home-controller.js"></script>
+  <script src="feature/developer/project/my-projects-controller.js"></script>
+
+  <script src="feature/executive/executive-state-manager.js"></script>
+  <script src="feature/executive/executive-dashboard-controller.js"></script>
+
+  <script src="feature/welcome/welcome-state-manager.js"></script>
+  <script src="feature/teams/teams-state-manager.js"></script>
+  <script src="feature/myAccount/myAccount-state-manager.js"></script>
+
+  <!--LESS pre-processor - needs to be after all CSS -->
+  <script src="lib/less/less.min.js"></script>
+</head>
+<body data-ui-view="content" data-ng-controller="appController"
+      data-ng-class="{'login-bg': isAtLogin(), 'register-bg': isAtRegister()}">
+</body>
+</html>

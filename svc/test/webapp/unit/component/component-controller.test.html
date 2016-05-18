@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>component: dashboard charts</title>
+
+  <base href="../../../../">
+
+  <!--main libraries-->
+  <script src="public/webapp/lib/lodash/lodash.min.js"></script>
+  <script src="public/webapp/lib/jquery/jquery.min.js"></script>
+  <script src="public/webapp/lib/angular/angular.min.js"></script>
+  <script src="public/webapp/lib/angular-ui/angular-ui-router.min.js"></script>
+  <script src="public/webapp/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="public/webapp/lib/bootstrap3-dialog/js/bootstrap-dialog.min.js"></script>
+  <script src="public/webapp/lib/angular-ui/ui-bootstrap-tpls.min.js"></script>
+  <script src="public/webapp/lib/angular-google-chart/ng-google-chart.min.js"></script>
+
+  <!-- Test Libraries (note angular-mocks.js needs to be loaded after real angular) -->
+  <link rel="shortcut icon" type="image/png" href="test/webapp/unit/lib/jasmine-2.3.4/jasmine_favicon.png">
+  <link rel="stylesheet" type="text/css" href="test/webapp/unit/lib/jasmine-2.3.4/jasmine.css">
+  <script src="test/webapp/unit/lib/jasmine-2.3.4/jasmine.js"></script>
+  <script src="test/webapp/unit/lib/jasmine-2.3.4/jasmine-html.js"></script>
+  <script src="test/webapp/unit/lib/jasmine-2.3.4/boot.js"></script>
+  <script src="test/webapp/unit/lib/angular-1.4.4/angular-mocks.js"></script>
+
+  <script src="test/webapp/unit/app.js"></script>
+  <script src="test/webapp/mocks/service/security/security-manager.js"></script>
+
+  <!-- app dependencies required to run tests-->
+  <script src="public/webapp/service/security/security-store.js"></script>
+  <script src="public/webapp/service/dal/dal.js"></script>
+  <script src="public/webapp/service/repository/repository.js"></script>
+  <script src="public/webapp/service/repository/project.js"></script>
+  <script src="public/webapp/service/repository/sprint.js"></script>
+
+  <script src="public/webapp/refdata/refdata.js"></script>
+
+  <!-- Mocks-->
+  <script src="test/webapp/mocks/service/dal/register.js"></script>
+  <script src="test/webapp/mocks/service/dal/project.js"></script>
+  <script src="test/webapp/mocks/service/dal/sprint.js"></script>
+
+  <!-- Features being tested -->
+  <script src="public/webapp/component/dashboard/bar-chart-requirement-users/bar-chart-requirement-users-controller.js"></script>
+  <script src="public/webapp/component/dashboard/combo-chart-revenue-cost/combo-chart-revenue-cost-controller.js"></script>
+  <script src="public/webapp/component/dashboard/pie-chart-requirement-status/pie-chart-requirement-status-controller.js"></script>
+  <script src="public/webapp/component/dashboard/pie-chart-sprint-status/pie-chart-sprint-status-controller.js"></script>
+  <script src="public/webapp/component/dashboard/stepped-area-progress/stepped-area-progress-controller.js"></script>-
+
+
+  <!--tests-->
+  <script src="test/webapp/unit/component/bar-chart-requirement-users.spec.js"></script>
+  <script src="test/webapp/unit/component/combo-chart-revenue-cost.spec.js"></script>
+  <script src="test/webapp/unit/component/pie-chart-requirement-status.spec.js"></script>
+  <script src="test/webapp/unit/component/pie-chart-sprint-status.spec.js"></script>
+  <script src="test/webapp/unit/component/stepped-area-progress.spec.js"></script>
+
+
+</head>
+
+<body>
+</body>
+</html>

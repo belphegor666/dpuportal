@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <user first_name="Un" last_name="Activated" email="unactivated@example.com" password="$2a$10$EzldIlCMvDQ2uxgaPJR7LepnwNnyHgNYSiJ7.lub0Msvw9dbzk1qy" activation_key="abc123" activated="0" role="USER" />
+    <user first_name="App" last_name="Rover" email="approver@example.com" password="$2a$10$EzldIlCMvDQ2uxgaPJR7LepnwNnyHgNYSiJ7.lub0Msvw9dbzk1qy" activation_key="def456" activated="1" role="USER"
+          telephone="01234" job_title="Requirement approver" reset_password_key="xxx" home_page_preference="DEVELOPER" twitter_url="#approver" linked_in_url="link" />
+    <user first_name="Deli" last_name="Very" email="delivery@example.com" password="$2a$10$EzldIlCMvDQ2uxgaPJR7LepnwNnyHgNYSiJ7.lub0Msvw9dbzk1qy" activation_key="ghi789" activated="1" role="USER"
+          telephone="01234" job_title="Requirement delivery" reset_password_key="xxx" home_page_preference="REQUIREMENT" twitter_url="#delivery" linked_in_url="link" />
+    <user first_name="Atos" last_name="Admin" email="admin@atos.net" password="$2a$10$EzldIlCMvDQ2uxgaPJR7LepnwNnyHgNYSiJ7.lub0Msvw9dbzk1qy" activation_key="jkl012" activated="1" role="ADMIN"
+          telephone="01234" job_title="System admin" reset_password_key="xxx" home_page_preference="REQUIREMENT" twitter_url="#admin" linked_in_url="link" />
+    <whitelist id="1" domain_name="example.com" />
+    <whitelist id="2" domain_name="atos.net" />
+    <project title="Test Project 1" summary="Test Summary 1" status="draft" product_owner="approver@example.com" user_id="3" efficiency="0" />
+</dataset>

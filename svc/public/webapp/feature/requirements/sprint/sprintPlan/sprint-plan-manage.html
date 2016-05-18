@@ -1,0 +1,80 @@
+<main class="sprint-results" data-ng-controller="sprintPlanManageController">
+  <header>
+    <div class="btn-group btn-breadcrumb">
+      <span class="btn btn-default">{{project.title}}</span>
+      <span class="btn btn-success">Sprint plan</span>
+    </div>
+    <div class="btn-toolbar pull-right">
+      <button class="btn btn-default" title="Go back one level" data-ng-click="back()">Back</button>
+      <button class="btn btn-primary" title="Add story" data-ng-click="addStory()">Add
+      </button>
+    </div>
+  </header>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>
+              User story
+            </th>
+            <th>
+              Team
+            </th>
+            <th>
+              Effort, priority & status
+            </th>
+            <th>
+              Actions
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr data-ng-repeat="story in stories | orderBy:'storyId' track by story.storyId"
+              data-ng-controller="sprintPlanItemController" >
+            <td>
+              {{story.storyDetails}}
+            </td>
+            <td>
+              <div data-ng-repeat="member in story.storyMembers">{{member.email}} - {{member.role}}</div>
+            </td>
+            <td>
+              <div>Story Points: {{story.storyPoints}}</div>
+              <div>Priority: {{story.priority}}</div>
+              <div>{{story.status}}</div>
+            </td>
+            <td>
+              <div class="btn-toolbar">
+
+                <button type="button" class="btn btn-info"
+                        data-ng-click="amendStory(story)" title="Amend this Story"><i
+                        class="fa fa-pencil"></i>
+                </button>
+
+                <button type="button" class="btn btn-success" ng-hide="isComplete(story.status)"
+                        data-ng-click="completeStory(story)" title="Complete this Story"><i
+                        class="fa fa-check"></i>
+                </button>
+
+                <button type="button" class="btn btn-danger" ng-hide="isComplete(story.status)"
+                        data-ng-click="deleteStory(story)" title="Delete this Story"><i
+                        class="fa fa-remove"></i>
+                </button>
+
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-info" data-ng-show="stories.length==0">
+    There are currently no stories for this sprint.
+  </div>
+</main>
+

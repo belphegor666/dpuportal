@@ -1,0 +1,78 @@
+<div class="home flex-body" data-ng-controller="homeController">
+  <header class="flex-header">
+    <span class="sr-only">Atos Logo</span>
+
+    <ul class="nav nav-tabs">
+      <li data-ng-class="{'active': isAtWelcome()}"><a data-ng-click="navigateToWelcome()">Welcome</a></li>
+
+      <li class="dropdown" data-ng-class="{'active': isAtDashboard()}">
+      <a class="dropdown-toggle" data-toggle="dropdown">Dashboards <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+
+        <li><a data-ng-click="navigateToRequirementDashboard()">My Prototypes</a></li>
+        <li><a data-ng-click="navigateToExecutiveDashboard()">Executive</a></li>
+        <li><a data-ng-click="navigateToAssignedProjects()">Developer</a></li>
+
+      </ul>
+      </li>
+
+
+
+      <!-- <li data-ng-class="{'active': isAtRequirementDashboard()}"><a data-ng-click="navigateToRequirementDashboard()">Requirements</a></li> -->
+
+
+
+
+      <li data-ng-class="{'active': isAtJoinAProjectThisWeek()}"><a data-ng-click="navigateToJoinAProjectThisWeek()">Projects</a></li>
+      <li data-ng-class="{'active': isAtTeams()}"><a data-ng-click="navigateToTeams()">Teams</a></li>
+
+      <!-- <li class="dropdown" data-ng-class="{'active': isAtDeveloperDashboard() }">
+        <a class="dropdown-toggle" data-toggle="dropdown">Developer <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a data-ng-click="navigateToAssignedProjects()">My Agile CV</a></li>
+          <li><a data-ng-click="navigateToAssignedTasks()">My Sprint Promise</a></li>
+        </ul>
+      </li> -->
+
+      <!-- <li data-ng-class="{'active': isAtExecutiveDashboard()}"><a data-ng-click="navigateToExecutiveDashboard()">Executive</a></li> -->
+
+      <li data-ng-class="{'active': isAtReleaseHistory()}"><a data-ng-click="navigateToReleaseHistory()">Release History</a></li>
+
+      <li data-ng-class="{'active': isAtShowcase()}"><a data-ng-click="navigateToShowcase()">Showcase</a></li>
+
+
+      <li class="dropdown" data-ng-class="{'active': isAtLegoStore() }">
+        <a class="dropdown-toggle" data-toggle="dropdown">Lego Store <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a data-ng-click="navigateToLegoWelcome()">Welcome</a></li>
+          <li><a data-ng-click="navigateToLegoPamm()">PAMM</a></li>
+          <li><a data-ng-click="navigateToLegoDotNet()">Microsoft.NET</a></li>
+          <li><a data-ng-click="navigateToLegoLamp()">LAMP</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown navbar-right" data-ng-class="{'active': isAtMyAccount() }">
+
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+        </a>
+
+        <ul class="dropdown-menu">
+
+          <li><a data-ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+          <li class="divider"></li>
+
+          <li><a data-ng-click="navigateToMyDetails()"><i class="fa fa-user-plus fa-fw"></i> My Details</a></li>
+          <li><a data-ng-click="navigateToSettings()"><i class="fa fa-cog fa-fw"></i> Settings</a></li>
+          <li><a data-ng-click="navigateToUpdatePassword()"><i class="fa fa-user-secret fa-fw"></i> Update Password</a></li>
+          <li><a data-ng-click="navigateToCertifications()"><i class="fa fa-certificate fa-fw"></i> Certifications</a></li>
+          <li><a data-ng-click="navigateToInvoices()"><i class="fa fa-money fa-fw"></i> Invoices</a></li>
+        </ul>
+      </li>
+
+    </ul>
+  </header>
+
+  <div class="content container-fluid flex-content" data-ui-view="home-content"></div>
+  <div class="flex-footer" data-ng-include="'../../component/footer/footer.html'"></div>
+</div>

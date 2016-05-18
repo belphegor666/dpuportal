@@ -1,0 +1,1 @@
+alter table project modify column document_url varchar(1024);

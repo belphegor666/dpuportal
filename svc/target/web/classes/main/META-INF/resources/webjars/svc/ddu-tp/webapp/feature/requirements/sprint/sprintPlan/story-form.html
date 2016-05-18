@@ -1,0 +1,82 @@
+<main class="sprint-results" data-ng-controller="storyFormController">
+    <header>
+        <div class="btn-group btn-breadcrumb">
+            <span class="btn btn-default">{{project.title}}</span>
+            <span class="btn btn-success">{{headingText}}</span>
+        </div>
+    </header>
+    <div class="panel panel-default">
+        <form class="panel-body container" name="storyForm"
+              data-ng-submit="saveStory(storyForm)" method="post" novalidate="novalidate">
+            <div class="row">
+                <!--left column-->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="required" for="story-epic">Epic/Feature</label>
+                        <input type="text" class="form-control" data-ng-model="story.epic" name="epic" id="story-epic" required>
+
+                        <div class="error" data-ng-show="hasValidationError && storyForm.epic.$error.required">
+                            Epic/Feature is required
+                        </div>
+                    </div>
+                    <div class='form-group'>
+                        <label class="required" for="story-details">User Story</label>
+                        <textarea class="form-control" rows="4" data-ng-model="story.storyDetails" id="story-details"
+                                name="story" required></textarea>
+
+                        <div class="error" data-ng-show="hasValidationError && storyForm.story.$error.required">
+                            Please enter the story details
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="trellolink">Link to Trello Card</label>
+                        <input type="text" class="form-control" data-ng-model="story.trelloLink" name="trellolink" id="trellolink">
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="story-createdby">Created By</label>
+                        <input type="text" class="form-control" data-ng-model="story.createdBy" name="createdby" id="story-createdby" readonly>
+                    </div>
+                </div>
+                <!--right column-->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="story-business-analyst">Business Analyst</label>
+                        <select data-ng-options="member as member.email for member in members track by member.email" class="form-control" data-ng-model="role.businessAnalyst" name="businessAnalyst" id="story-business-analyst"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="story-developer">Developer</label>
+                        <select data-ng-options="member as member.email for member in members track by member.email" class="form-control" data-ng-model="role.developer" name="developer" id="story-developer"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="story-tester">Tester</label>
+                        <select data-ng-options="member as member.email for member in members track by member.email" class="form-control" data-ng-model="role.tester" name="tester" id="story-tester"></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="story-points">Story Points</label>
+                        <input type="text" class="form-control" data-ng-model="story.storyPoints" name="points" id="story-points" required>
+
+                        <div class="error" data-ng-show="hasValidationError && storyForm.points.$error.required">
+                            Please enter the story points
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="story-priority">Priority</label>
+                        <input type="text" class="form-control" data-ng-model="story.priority" name="priority" id="story-priority" required>
+
+                        <div class="error" data-ng-show="hasValidationError && storyForm.priority.$error.required">
+                            Please enter the priority
+                        </div>
+                    </div>
+                    <div class="form-group" data-ng-show="isAmend">
+                        <label class="required" for="story-status">Status</label>
+                        <select data-ng-options="status as status.description for status in statusList" class="form-control" data-ng-model="storyStatus" name="status" id="story-status"></select>
+                    </div>
+                </div>
+            </div>
+            <footer class="row pull-right">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" data-ng-click="cancel()" class="btn btn-cancel">Cancel</button>
+            </footer>
+        </form>
+    </div>
+</main>

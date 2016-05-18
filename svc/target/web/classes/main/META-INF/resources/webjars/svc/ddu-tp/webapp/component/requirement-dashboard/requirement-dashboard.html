@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><a class="dashboard-filter" href="" data-ng-click="filterByStatus($$refdata.PROJECT_STATUS.DRAFT)">{{draft}}</a></div>
+                        <div><a class="dashboard-filter" href="" data-ng-click="filterByStatus($$refdata.PROJECT_STATUS.DRAFT)">Draft</a></div>
+                        <div class="small">Revenue - £{{draftRevenue}}m</div>
+                        <div class="small">Margin - £{{draftMargin}}m</div>
+                        <div class="small">Cost - £{{draftCost}}m</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-list fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><a class="dashboard-filter" href="" data-ng-click="filterByStatus($$refdata.PROJECT_STATUS.SUBMITTED)">{{submitted}}</a></div>
+                        <div><a class="dashboard-filter" href="" data-ng-click="filterByStatus($$refdata.PROJECT_STATUS.SUBMITTED)">Submitted</a></div>
+                        <div class="small">Revenue - £{{submittedRevenue}}m</div>
+                        <div class="small">Margin - £{{submittedMargin}}m</div>
+                        <div class="small">Cost - £{{submittedCost}}m</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-cogs fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><a class="dashboard-filter" href="" data-ng-click="filterByStatus($$refdata.PROJECT_STATUS.IN_DEVELOPMENT)">{{inDevelopment}}</a></div>
+                        <div><a class="dashboard-filter" href="" data-ng-click="filterByStatus($$refdata.PROJECT_STATUS.IN_DEVELOPMENT)">In Development</a></div>
+                        <div class="small">Revenue - £{{inDevelopmentRevenue}}m</div>
+                        <div class="small">Margin - £{{inDevelopmentMargin}}m</div>
+                        <div class="small">Cost - £{{inDevelopmentCost}}m</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-check fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><a class="dashboard-filter" href="" data-ng-click="filterByStatus($$refdata.PROJECT_STATUS.CLOSED_OK)">{{completed}}</a></div>
+                        <div><a class="dashboard-filter" href="" data-ng-click="filterByStatus($$refdata.PROJECT_STATUS.CLOSED_OK)">Completed OK</a></div>
+                        <div class="small">Revenue - £{{completedRevenue}}m</div>
+                        <div class="small">Margin - £{{completedMargin}}m</div>
+                        <div class="small">Cost - £{{completedCost}}m</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+<main data-ng-controller="teamsController">
+  <header>
+    <div class="btn-group btn-breadcrumb">
+      <span class="btn btn-success" name="dateHeader">Project Teams as of {{currentDate | date:'dd MMMM yyyy'}}</span>
+    </div>
+    <span class="btn pull-right">
+      <button class="btn btn-xs btn-info" data-ng-click="downloadProjectTeamCsv()">Export to spreadsheet</button>
+      <button class="btn btn-xs btn-info" data-ng-click="previousWeek()">
+        <i class="glyphicon glyphicon-arrow-left"></i> Previous week
+      </button>
+      <button class="btn btn-xs btn-info" data-ng-click="today()">Today</button>
+      <button class="btn btn-xs btn-info" data-ng-click="nextWeek()">
+        Next week <i class="glyphicon glyphicon-arrow-right"></i>
+      </button>
+    </span>
+
+  </header>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+
+
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th class="col-md-half">
+                <div class="filter-label">Search</div>
+            </th>
+            <th colspan="7">
+                <span class="col-md-3">
+                <input type="text" class="form-control" ng-model="searchKeyword"  />
+                </span>
+            </th>
+          </tr>
+          <tr>
+            <th class="col-md-half">Priority</th>
+            <th class="col-md-1">Tech Stack</th>
+            <th class="col-md-half">ID</th>
+            <th class="col-md-2">Title</th>
+            <th class="col-md-2">Product Owner</th>
+            <th class="col-md-1">Sprint No.</th>
+            <th class="col-md-3">Team</th>
+            <th class="col-md-2">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr data-ng-repeat="project in projects | orderBy:['priority', priorityValueSort] | filter: search  track by project.id" data-ng-controller="requirementItemController">
+            <td>
+              {{project.priority}}
+            </td>
+            <td>
+              {{project.techStack}}
+            </td>
+            <td>
+              {{project.projectCode}}
+            </td>
+            <td>
+              {{project.title}}
+            </td>
+            <td>
+              {{project.productOwner}}
+            </td>
+            <td>
+              <!-- Get the first Sprint in the list for this project (there should be only one - the one for the
+              selected date) -->
+              {{project.sprints[0].sprintNo}}
+            </td>
+            <td>
+              <div data-ng-repeat="teamMember in project.sprints[0].members | orderBy: 'priority'" >
+                <strong>{{teamMember.role}}
+                  <a href="" data-ng-click="navigateToUserProjects(teamMember)">{{teamMember.forename}} {{teamMember.surname}}</a>
+                  ({{teamMember.email}})
+                </strong>
+                <br/>
+                <span ng-class="{sprintWarning: teamMember.certifications.length < 1}" >
+                &nbsp; - Certs:
+                  <span data-ng-repeat="certification in teamMember.certifications"
+                        data-ng-if="certification.percentComplete > 0"
+                        data-ng-class="getCertColor(certification)">{{certification.shortDesc}}
+                    <span data-ng-if="certification.percentComplete < 100">({{certification.percentComplete}}%)</span>
+                  </span>
+                  </span>
+                <br/>
+                <span ng-class="{sprintWarning: teamMember.storyAllocations.length < 1}" >
+                  &nbsp; - Stories:
+
+                  <span hidden data-ng-repeat="storyAllocation in teamMember.storyAllocations | filter:{role:$$refdata.JOB_ROLE.BUSINESS_ANALYST} as baAllocations"></span>BA - {{baAllocations.length}}
+                  <span hidden data-ng-repeat="storyAllocation in teamMember.storyAllocations | filter:{role:$$refdata.JOB_ROLE.DEVELOPER} as devAllocations"></span>Dev - {{devAllocations.length}}
+                  <span hidden data-ng-repeat="storyAllocation in teamMember.storyAllocations | filter:{role:$$refdata.JOB_ROLE.TESTER} as testAllocations"></span>Test - {{testAllocations.length}}
+                </span>
+                <br/>
+                &nbsp; - Story Points:
+                <span>BA - {{teamMember.baStoryPoints}} Dev - {{teamMember.devStoryPoints}} Test - {{teamMember.testStoryPoints}}</span>
+              </div>
+
+              <br/>
+              <strong>Team of {{project.sprints[0].members.length || 0}} </strong>
+              <span data-ng-show="project.sprints[0].members != null && project.sprints[0].members.length > 0">
+                <a class="pull-right" href="mailto:{{project.sprints[0].emailAddresses}}"><div class="glyphicon glyphicon-envelope glyphicon-padding"></div> email the team</a>
+              </span>
+            </td>
+            <td>
+              <div class="btn-toolbar">
+                <button class="btn btn-info btn-sm glyphicon glyphicon-pencil" title="Amend/View this Requirement"
+                        data-ng-click="amend()"></button>
+                <button class="btn btn-warning btn-sm glyphicon glyphicon-file" title="Documents"
+                        data-ng-click="manageDocumentRepository()"></button>
+                <button ng-hide="requirement.status==$$refdata.PROJECT_STATUS.DRAFT" class="btn btn-default btn-sm glyphicon icon-sprint" title="Manage Sprints for this project"
+                        data-ng-click="manageSprints()"></button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="6">
+              <b>Total number of individuals this week: {{totalIndividualCount}}</b>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

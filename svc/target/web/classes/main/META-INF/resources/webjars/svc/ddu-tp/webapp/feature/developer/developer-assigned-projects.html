@@ -1,0 +1,78 @@
+
+
+<main data-ng-controller="assignedProjectsController">
+
+    <header data-ng-show="currentUser">
+        <div class="btn-group btn-breadcrumb">
+        <span class="btn btn-success">My Agile CV</span>
+        </div>
+    </header>
+
+    <header data-ng-show="!currentUser">
+        <div class="btn-group btn-breadcrumb">
+            <span class="btn btn-success">Agile CV</span>
+            <span class="btn">{{member.forename}} {{member.surname}}</span>
+        </div>
+        <div class="btn-toolbar pull-right">
+            <button class="btn btn-default" title="Go back one level" data-ng-click="back()">Back</button>
+        </div>
+    </header>
+
+
+    <div class="col-md-10">
+        <h3>Sprint Promises for this week</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Requirement</th>
+                    <th>Epic</th>
+                    <th>Story</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="story in assignedStories">
+                    <td>{{story.projectTitle}}</td>
+                    <td>{{story.epic}}</td>
+                    <td>{{story.storyDetails}}</td>
+                    <td><a data-ng-show="{{story.trelloLink}}" href="{{story.trelloLink}}" target="trello" title="Link to Trello Card"><img class="img-responsive" src="../../resource/image/trello.png" alt="Link to Trello Card"></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="col-md-10">
+        <h3>Projects worked on</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Sprint no</th>
+                    <th>Sprint start</th>
+                    <th>Sprint end</th>
+                    <th>Role</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="project in assignedProjects | orderBy:'-startDate'">
+                    <td>{{project.projectCode}}</td>
+                    <td>{{project.title}}</td>
+                    <td>{{project.sprintNo}}</td>
+                    <td>{{project.startDate | date:"dd/MM/yyyy"}}</td>
+                    <td>{{project.endDate | date:"dd/MM/yyyy"}}</td>
+                    <td>{{project.role}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

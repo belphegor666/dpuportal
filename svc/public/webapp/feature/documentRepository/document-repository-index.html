@@ -1,0 +1,55 @@
+
+<main data-ng-controller="documentRepositoryController">
+
+    <header>
+        <div class="btn-group btn-breadcrumb">
+            <span class="btn btn-default">{{project.title}}</span>
+            <span class="btn btn-success">Documents</span>
+        </div>
+
+        <div class="btn-toolbar pull-right">
+            <button type="button" data-ng-click="openInNewTab()" class="btn ">View Full Screen</button>
+        </div>
+
+    </header>
+
+
+    <hr>
+
+    <div class="panel-body container">
+
+        <div data-ng-show="!documentRepositoryLink">
+            <div data-ng-show="!permittedUser()">
+                <div>Document Repository has not yet been set up</div>
+            </div>
+        </div>
+
+        <div data-ng-show="documentRepositoryLink">
+            <iframe width="800" height="800" ng-src="{{documentRepositoryLink}}"></iframe>
+        </div>
+
+        <div data-ng-show="permittedUser()">
+            <form name="documentRepositoryForm" data-ng-submit="saveDocumentLink(documentRepositoryForm)" method="post" novalidate="novalidate">
+
+
+                <div class="padding-text"><H3>Link to the document repository for this requirement</H3></div>
+
+                <div class="padding-text"><H5>If you need help setting up your document repository, please email Jafar Nabeel (jafar.nabeel@atos.net) or David Dinsdale
+                    (david.dinsdale@atos.net) who will help you to set it up.</H5></div>
+
+
+                <div class='form-group'>
+                    <label class="required" for="documentLink">Document URL (include the http:// etc for example http://www.google.com) :</label>
+                    <input class="form-control" type="text" data-ng-model="documentLink" id="documentLink" name="documentLink" placeholder="Document Link" required />
+                </div>
+
+
+                <div>
+                    <button type="submit" submit class="btn btn-primary">Save URL</button>
+                    <button type="button" data-ng-click="back()" class="btn btn-cancel btn-margin">Back</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</main>

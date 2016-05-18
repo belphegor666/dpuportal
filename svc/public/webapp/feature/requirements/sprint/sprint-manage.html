@@ -1,0 +1,86 @@
+<main class="sprint-results" data-ng-controller="sprintManageController">
+  <header>
+    <div class="btn-group btn-breadcrumb">
+      <span class="btn btn-default">{{project.title}}</span>
+      <span class="btn btn-success">Sprints</span>
+    </div>
+    <div class="btn-toolbar pull-right">
+      <button class="btn btn-default" title="Go back one level" data-ng-click="back()">Back</button>
+      <button class="btn btn-primary" title="Add a new sprint for this project" data-ng-click="addSprint()">Add New Sprint
+      </button>
+    </div>
+  </header>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>
+              Sprint Start
+            </th>
+            <th>
+              Sprint End
+            </th>
+            <th>
+              Sprint Number
+            </th>
+            <th>
+              Team Members
+            </th>
+            <th>
+              Actions
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr data-ng-repeat="sprint in sprints | orderBy:'-startDate' track by sprint.sprintId"
+              data-ng-controller="sprintItemController" >
+            <td>
+              {{sprint.startDate | date:"dd/MM/yyyy"}}
+            </td>
+
+            <td>
+              {{sprint.endDate | date:"dd/MM/yyyy"}}
+            </td>
+            <td>
+              {{sprint.sprintNo}}
+            </td>
+            <td>
+              <div ng-repeat="teamMember in sprint.members | orderBy: 'priority'">
+                {{teamMember.role}} - {{teamMember.forename}} {{teamMember.surname}} ({{teamMember.email}})
+              </div>
+              <strong>Team of {{sprint.members.length || 0}}</strong>
+            </td>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-info btn-sm glyphicon glyphicon-pencil" title="Amend this Sprint"
+                        data-ng-click="amendSprint(sprint)"></button>
+              </div>
+              <div class="btn-group">
+                <button data-ng-show="!joined && isCurrentSprint(sprint.sprintId)" class="btn btn-success btn-sm glyphicon glyphicon-user" title="Join Project"
+                        data-ng-click="joinProject(sprint)"></button>
+                <button data-ng-show="joined && isCurrentSprint(sprint.sprintId)" class="btn btn-danger btn-sm glyphicon glyphicon-remove" title="Leave Project"
+                        data-ng-click="leaveProject(sprint)"></button>
+
+                <!--<div data-ng-show="!hasJoinedProject(project.id) && sprint.status=='IN_PROGRESS'" class="small-info">Part of Current Sprint</div>-->
+
+              </div>
+              <div class="btn-group">
+                <button class="btn btn-warning btn-sm glyphicon glyphicon-list-alt" title="Manage Sprint Plans"
+                        data-ng-click="manageSprintPlans(sprint)"></button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-info" data-ng-show="sprints.length==0">
+    There are currently no sprints for this requirement.
+  </div>
+</main>
+

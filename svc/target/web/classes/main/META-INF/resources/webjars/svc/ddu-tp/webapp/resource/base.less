@@ -1,0 +1,55 @@
+@image-path: "image";
+
+html, body {
+  height: 100%;
+}
+
+.login-bg {
+  background: url("@{image-path}/login-bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.app-bg {
+  background: linear-gradient(to bottom, #ffffff 0%, #F8F8F8 100%);
+}
+
+.register-bg {
+  background: url("@{image-path}/register-bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.panel-heading {
+  font-size: medium;
+  font-weight: bold;
+}
+
+/** add "*" to required label*/
+label.required:after {
+  content:" *" !important;
+  color:red;
+}
+
+label {
+  font-size: small;
+}
+
+.form-group {
+  .error {
+    color: #ac2925;
+    font-size: small;
+  }
+}
+
+.cert-bronze {
+    color: #cd7f32;
+}
+
+.cert-silver {
+    color: #c0c0c0;
+}
+
+.cert-gold {
+    color: #ffd700;
+}
+
+

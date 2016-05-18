@@ -1,0 +1,54 @@
+<main class="welcome container" data-ng-controller="welcomeController">
+    <div class="col-md-offset-1 col-md-11">
+        <div>
+            <h2>Welcome</h2>
+        </div>
+        <hr>
+        <div>
+            <div>
+                Thank you for joining our community. When you have reviewed this page, please set your home page using one of the following buttons. If your role changes, you can always visit this page again (using the tabs on the left) and change your home page.
+            </div>
+            <br>
+            <div class="btn-group">
+                <button type="button" class="btn btn-info btn-spacing" data-ng-click="changeHomepage('REQUIREMENT')">Product Owner<br>I will submit requirements</button>
+                <button type="button" class="btn btn-info btn-spacing" data-ng-click="changeHomepage('DEVELOPER')">Development Team<br>I will work on projects</button>
+                <button type="button" class="btn btn-info btn-spacing" data-ng-click="changeHomepage('EXECUTIVE')">Executive dashboard<br>Overview of all projects</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-offset-1 col-md-11">
+        <hr>
+        <div class="col-md-6">
+            <h3>Become Agile Accredited</h3>
+            <a href="'../../resource/document/agile_aware.pptx" download="agile_aware.pptx" target="_self">
+                <img class="img-responsive" src="../../resource/image/agile-aware.png" alt="Agile Aware Training Pack">
+            </a>
+            <div>Click on the image above to download the training pack. When you are ready to take the accreditation exam email:</div>
+            <div>
+                <a href="" data-ng-click="email(['shirley.kenyon@atos.net', 'jonathan.davies@atos.net'])" uib-tooltip="Click to email shirley.kenyon@atos.net and jonathan.davies@atos.net" uib-tooltip-placement="auto top"><div class="glyphicon glyphicon-envelope glyphicon-padding"></div>Shirley Kenyon and Jon Davies</a>
+            </div>
+            <div>Have fun and we look forward to welcoming you to the Atos Agile community.</div>
+        </div>
+        <div class="col-md-6">
+            <h3>Who can I speak to?</h3>
+            <div>For day to day enquiries about the Digital Prototyping Unit, speak to</div>
+            <div data-ng-repeat="contact in contacts">
+                <br>
+                <a href="" data-ng-click="email([contact.email])" uib-tooltip="Click to email {{contact.email}}" uib-tooltip-placement="auto top"><div class="glyphicon glyphicon-envelope glyphicon-padding"></div>{{contact.name}}</a>
+            </div>
+            <br>
+            <div>To report an issue on the Portal, use the email link below</div>
+            <div>
+                <br>
+                <a href="" data-ng-click="email(['DPUSupport@atos.net?subject=Reported Issue'])" uib-tooltip="Click to email an issue with DPU Portal" uib-tooltip-placement="auto top"><div class="glyphicon glyphicon-envelope glyphicon-padding"></div>DPU Portal Support</a>
+            </div>
+            <br>
+            <div>To suggest an enhancement to the Portal, email your suggestion using the following link</div>
+            <div>
+                <br>
+                <a href="" data-ng-click="email(['DPUSupport@atos.net?subject=Suggestion&body=Please%20supply%20a%20user%20story%2E%0D%0A%0D%0AAs%20a%20%3A%20%0D%0A%0D%0AI%20want%20to%20%3A%20%0D%0A%0D%0ASo%20that%20I%20may%20%3A%20'])" uib-tooltip="Click to email any suggestion for DPU Portal" uib-tooltip-placement="auto top"><div class="glyphicon glyphicon-envelope glyphicon-padding"></div>DPU Portal Suggestions</a>
+            </div>
+        </div>
+    </div>
+
+</main>

@@ -1,0 +1,147 @@
+<main class="register container" data-ng-controller="registerController">
+  <div class="col-md-offset-1 col-md-10 col-xs-12 container-border">
+    <div class="col-md-12 col-xs-12 container-margin-bottom">
+      <div data-ng-include="'../../component/background/agile-social.html'"></div>
+    </div>
+    <div class="col-md-6 col-xs-12 pull-right feature-border">
+      <form name="registerForm" class="form-horizontal"
+            data-ng-submit="register(registerForm)" method="post" novalidate="novalidate">
+        <header class="h3">Registration</header>
+
+        <div class="form-group">
+          <label class="col-sm-4 required" for="title">Title</label>
+
+          <div class="col-sm-8">
+            <select class="form-control" data-ng-model="credentials.title" id="title" name="title"
+                    data-ng-options="value for (key, value) in titles" required autofocus>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 required" for="forename">First Name</label>
+
+          <div class="col-sm-8">
+
+            <input class="form-control" type="text" id="forename" name="forename" data-ng-model="credentials.firstName"
+                   placeholder="First Name" required>
+
+            <div class="error" id="forename-required" data-ng-show="hasValidationError && registerForm.forename.$error.required">
+              First name is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 required" for="surname">Last Name</label>
+
+          <div class="col-sm-8">
+            <input class="form-control" type="text" id="surname" name="surname" data-ng-model="credentials.lastName"
+                   placeholder="Last Name" required>
+
+            <div class="error" id="surname-required" data-ng-show="hasValidationError && registerForm.surname.$error.required">
+              Last name is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 required" for="telephone">Telephone</label>
+
+          <div class="col-sm-8">
+            <input class="form-control" type="text" id="telephone" name="telephone"
+                   data-ng-model="credentials.telephone" data-ng-blur="formatTelephone()" data-ng-trim="false"
+                   placeholder="Telephone" data-ng-pattern="$$dataType.telephone" required>
+
+            <div class="error" id="telephone-required" data-ng-show="hasValidationError && registerForm.telephone.$error.required">
+              Telephone number is required
+            </div>
+            <!-- Need to clarify phone number Regex -->
+            <div class="error" id="telephone-pattern" data-ng-show="hasValidationError && registerForm.telephone.$error.pattern">
+              Telephone number is in an invalid format. Please ensure you have entered your telephone number in the correct format.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 required" for="email">Email</label>
+
+          <div class="col-sm-8">
+
+            <input class="form-control" type="email" id="email" name="email" data-ng-model="credentials.email"
+                   data-ng-model-options="{ allowInvalid: true }" placeholder="Email - This will be your username" required>
+
+            <div class="error" id="email-required" data-ng-show="hasValidationError && registerForm.email.$error.required">
+              Email is required field
+            </div>
+            <div class="error" id="email-pattern" data-ng-show="hasValidationError && registerForm.email.$error.email">
+              Email is in an invalid format
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 required" for="confirmemail">Confirm Email</label>
+
+          <div class="col-sm-8">
+            <input class="form-control" type="email" id="confirmemail" name="confirmemail"
+                   data-ng-model="confirmEmail" placeholder="Confirm Email" match="credentials.email"
+                   data-ng-blur="visitedEmail=true" required>
+
+            <div class="error" id="confirmemail-required" data-ng-show="hasValidationError && registerForm.confirmemail.$error.required">
+              Confirm Email is a required field
+            </div>
+            <div class="error" id="confirmemail-match" data-ng-show="visitedEmail && registerForm.confirmemail.$error.match">
+              Email addresses do not match
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 required" for="password">Password</label>
+
+          <div class="col-sm-8">
+            <input class="form-control" type="password" id="password" name="password"
+                   data-ng-model="credentials.password"
+                   data-ng-model-options="{ allowInvalid: true }" placeholder="Password" data-ng-pattern="$$dataType.password" required>
+
+            <div class="error" id="password-required" data-ng-show="hasValidationError && registerForm.password.$error.required">
+              Password is required
+            </div>
+            <div class="error" id="password-pattern" data-ng-show="hasValidationError && registerForm.password.$error.pattern">
+              Password must be between 8 and 20 characters long as well as contain at least one alphabetical character and one digit
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 required" for="confirmpassword">Confirm Password</label>
+
+          <div class="col-sm-8">
+            <input class="form-control" type="password" id="confirmpassword" name="confirmpassword"
+                   data-ng-model="confirmPassword" placeholder="Confirm Password" match="credentials.password"
+                   data-ng-blur="visitedPassword=true" required>
+
+            <div class="error" id="confirmpassword-required" data-ng-show="hasValidationError && registerForm.confirmpassword.$error.required">
+              Confirm Password is a required field
+            </div>
+            <div class="error" id="confirmpassword-match" data-ng-show="visitedPassword && registerForm.confirmpassword.$error.match">
+              Passwords do not match
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-offset-4 col-md-8 col-sm-8">
+            <input type="checkbox" data-ng-model="accepted" name="termsandconditionscheckbox" required/>
+            I have read and agree to the <span><a data-ng-click="showTermsAndConditions()">Terms And Conditions</a></span>
+
+            <div class="error"
+                 data-ng-show="hasValidationError && registerForm.termsandconditionscheckbox.$error.required">
+              You must agree to the Terms and Conditions in order to continue
+            </div>
+          </div>
+        </div>
+        <footer class="right btn-onput-group">
+          <button type="button" class="btn btn-default right" data-ng-click="cancel()">Cancel</button>
+          <button type="submit" class="btn btn-primary right">Register</button>
+        </footer>
+      </form>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <div data-ng-include="'../../component/background/agile-manifesto-left.html'"></div>
+    </div>
+  </div>
+</main>

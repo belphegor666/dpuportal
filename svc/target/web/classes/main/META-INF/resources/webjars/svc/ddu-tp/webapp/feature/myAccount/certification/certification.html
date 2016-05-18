@@ -1,0 +1,86 @@
+<main data-ng-controller="certificationController">
+
+    <header>
+        <div class="btn-group btn-breadcrumb">
+            <span class="btn btn-success">Certifications</span>
+        </div>
+    </header>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Certification</th>
+            <th>% Complete</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="certification in certifications">
+            <td>{{certification.description}}</td>
+            <td>
+                <div>
+                    <p>
+                        <strong>
+                        <span class="text-muted">{{certification.percentComplete}}% Complete</span></strong>
+                    </p>
+               </div>
+
+            </td>
+            <td><button class="btn btn-default btn-sm glyphicon glyphicon-pencil" title="Update certification"
+                        data-ng-click="updateCertification(certification)"></button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+    <div>
+        This will appear on teams this week as: <span data-ng-repeat="certificate in certifications"
+                                                      data-ng-if="certificate.percentComplete > 0"
+                                                      data-ng-class="getCertColor(certificate)">{{certificate.shortDesc}}
+        <span data-ng-if="certificate.percentComplete < 100">({{certificate.percentComplete}}%)</span>
+    </span>
+    </div>
+
+    <hr>
+
+    <form name="certificateForm"
+              data-ng-submit="saveCertification(certificateForm)" method="post" novalidate="novalidate">
+
+        <div class="col-md-12">
+        <div class="form-group col-md-6">
+            <label for="certificate">Add new certification - select:</label> <br>
+
+            <div class="">
+                <select name="cert" class="form-control input-medium" data-ng-model="certificate.certificate" id="certificate" name="certificate"
+                        data-ng-options="certificationType.lookupCode as certificationType.description for certificationType in certificationTypes">
+
+                </select>
+            </div>
+        </div>
+        </div>
+
+
+        <br>
+        <br>
+
+        <div class="col-md-12">
+            <div class="form-group col-md-3">
+                <label for="percentComplete">% complete:</label>
+                    <input type="text" class="form-control" numeric-only name="percentComplete" data-ng-model="certificate.percentComplete" placeholder="0"
+                       id="percentComplete">
+            </div>
+        </div>
+
+
+        <br>
+        <br>
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <p class="form-submit">
+                    <button type="submit" submit class="btn btn-primary btn-margin">Add certification</button>
+                </p>
+            </div>
+
+        </div>
+    </form>
+
+</main>

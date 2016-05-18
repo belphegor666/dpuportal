@@ -1,0 +1,265 @@
+<main data-ng-controller="requirementFormController">
+  <header class="btn-group btn-breadcrumb">
+    <span class="btn btn-info">{{headingText}}</span>
+  </header>
+  <div class="btn-toolbar pull-right">
+    <button class="btn btn-default" title="Go back one level" data-ng-click="back()">Back</button>
+
+  </div>
+  <div class="panel panel-default requirement-form">
+    <form class="panel-body container" name="requirementForm"
+          data-ng-submit="saveRequirement(requirementForm)" method="post" novalidate="novalidate">
+      <div class="col-md-8">
+        <div class='form-group'>
+          <label class="required" for="title">Title</label>
+          <input ng-disabled="isReadOnlyMode" type="text" class="form-control" name="title" data-ng-model="project.title" placeholder="Project Title"
+                 id="title" required>
+
+          <div class="error" id="title-required"
+               data-ng-show="hasValidationError && requirementForm.title.$error.required">
+            {{$$errorText.EMPTY_REQUIREMENT_TITLE}}
+          </div>
+        </div>
+
+        <div ng-hide="isReadOnlyMode">
+          <div class="padding-text">Guidance on creating new requirements</div>
+
+          <div class="padding-text">The first stage in proposing a requirement to the Digital Prototyping Unit is to enter
+            a high level summary including:
+          </div>
+
+          <div class="padding-text">
+            <div class="padding-text"><i class="btn-sm glyphicon glyphicon-ok"></i> A brief summary
+              - this will help us figure out what we need to do and what technology to use
+            </div>
+            <div class="padding-text"><i class="btn-sm glyphicon glyphicon-ok"></i> The anticipated
+              benefits IMPORTANT - the benefits are used to prioritise projects.
+            </div>
+            <div class="padding-text"><i class="btn-sm glyphicon glyphicon-ok"></i>
+              The WBS code and target completion date
+            </div>
+            <div class="padding-text"><i class="btn-sm glyphicon glyphicon-ok"></i> What if I dont
+              have a WBS Code? If you don't have a WBS code, we will work on your requirement using bench resource. In
+              this case, we can not guarantee a delivery date and the prototype will not be production ready (e.g. we wont
+              security test it etc.)
+            </div>
+          </div>
+
+          <div class="padding-text">When are ready to propose your requirement, press submit</div>
+
+        </div>
+
+
+        <div class='form-group'>
+          <label class="required" for="summary">Summary</label>
+            <textarea ng-disabled="isReadOnlyMode" class="form-control" name="summary" rows="6" data-ng-model="project.summary"
+                      placeholder="Project Summary"
+                      id="summary" required/>
+
+          <div class="error" id="summary-required"
+               data-ng-show="hasValidationError  && requirementForm.summary.$error.required">
+            {{$$errorText.EMPTY_REQUIREMENT_SUMMARY}}
+          </div>
+        </div>
+
+
+        <div class='form-group'>
+          <h4>Benefits in the next 12 months</h4>
+
+          <div class="row">
+            <div class="form-group col-md-3">
+              <label for="revenue">Revenue &pound m:</label>
+
+              <div class="">
+                <input ng-blur="parseFloat('revenue')" ng-disabled="isReadOnlyMode" type="text" class="form-control" data-ng-model="project.revenue" placeholder="0.00" id="revenue">
+              </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="margin">Margin &pound m:</label>
+
+              <div class="">
+                <input ng-blur="parseFloat('margin')" ng-disabled="isReadOnlyMode" type="text" class="form-control" data-ng-model="project.margin" placeholder="0.00" id="margin">
+              </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="costSavings">Cost Savings &pound m:</label>
+
+              <div class="">
+                <input ng-blur="parseFloat('costSavings')" ng-disabled="isReadOnlyMode" type="text" class="form-control" data-ng-model="project.costSavings" placeholder="0.00"
+                       id="costSavings">
+              </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="efficiency">Efficiency (days):</label>
+
+              <div class="">
+                <input ng-blur="parseFloat('efficiency')" ng-disabled="isReadOnlyMode" type="text" class="form-control"
+                       data-ng-model="project.efficiency" placeholder="0" id="efficiency">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <div class="row">
+
+            <div class="form-group col-md-3">
+              <label for="projectTypes">Type of system required:</label>
+
+              <div class="">
+                <select ng-disabled="isReadOnlyMode" class="form-control" data-ng-model="project.projectType" id="projectTypes" name="projectTypes"
+                        data-ng-options="projectType.lookupCode as projectType.description for projectType in projectTypes">
+                  <option value="" disabled selected>Please select ...</option>
+                </select>
+              </div>
+              <div>Note:</div>
+              <div>Production systems must be funded.</div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="fundingTypes">Requirement funded by:</label>
+
+              <div class="">
+                <select ng-disabled="isReadOnlyMode" class="form-control" data-ng-model="project.fundingType" id="fundingTypes" name="fundingTypes"
+                        data-ng-options="fundingType.lookupCode as fundingType.description for fundingType in fundingTypes">
+                  <option value="" disabled selected>Please select ...</option>
+                </select>
+              </div>
+              <div>Requirement prioritisation is:</div>
+              <div>- 1 client funded</div>
+              <div>- 2 internally funded</div>
+              <div> - 3 no funding (use bench please)</div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="costCode">Revenue / cost code:</label>
+
+              <div class="">
+                <input ng-disabled="isReadOnlyMode" type="text" class="form-control" data-ng-model="project.costCode" id="costCode">
+              </div>
+              <div>e.g. GB.903373.040</div>
+
+              <div>
+                <label for="maxBudget">Max Budget &pound:</label>
+
+                <div class="">
+                  <input ng-disabled="isReadOnlyMode" type="text" class="form-control" data-ng-model="project.maxBudget" id="maxBudget">
+                </div>
+                <div> Please note a team of 5 people for 4 weeks = &pound;50,000. That is the maximum for unfunded
+                  prototypes.
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="targetDate">Target delivery date:</label>
+
+              <div class="input-group" data-ng-click="openTargetDate($event)">
+                <input ng-disabled="isReadOnlyMode" id="targetDate" name="targetDate" type="date" class="form-control" required
+                       data-ng-model="project.targetDate"
+                       uib-datepicker-popup="{{dateFormat}}"
+                       is-open="targetDateOpened"
+                       max-date="maxDate"
+                       datepicker-options="dateOptions"
+                       date-disabled="disabled(date, mode)"
+                       show-button-bar="false">
+                  <span class="input-group-btn">
+                  <button ng-disabled="isReadOnlyMode" type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"
+                                                                                                name="calendarButton"></i></button>
+                  </span>
+              </div>
+              <div class="error" id="targetDate-required"
+                   data-ng-show="hasValidationError && requirementForm.targetDate.$error.required">
+                {{$$errorText.EMPTY_REQUIREMENT_TARGETDATE}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-hide="!project.createdDate" class="form-group">
+          <label for="createdDate">Created Date</label>
+
+          <div class="">
+            <input ng-disabled="isReadOnlyMode" type="date" readonly class="form-control" data-ng-model="project.createdDate"
+                   datetime="yyyy-MM-dd HH:mm:ss" id="createdDate">
+          </div>
+        </div>
+
+        <div ng-show="showSubmitButton" class="padding-text">
+          <h3>Submission check list</h3>
+
+          <div class="padding-text">By submitting this requirement you are confirming that:</div>
+
+          <div class="padding-text"><i class="btn-sm glyphicon glyphicon-ok"></i> To the best
+            of your knowledge, the benefits articulated above are reasonable and will be achieved within 12 months.
+          </div>
+          <div class="padding-text"><i class="btn-sm glyphicon glyphicon-ok"></i>You have set
+            up a document repository (under the documents tab on the left) and completed a requirements specification.
+          </div>
+          <div class="padding-text"><i class="btn-sm glyphicon glyphicon-ok"></i> You will be
+            able to commit up to 3 hours a week to work with a Digital Prototyping Unit team on your requirement.
+          </div>
+          <div class="padding-text"><i class="btn-sm glyphicon glyphicon-ok"></i> You
+            understand your role as Product Owner and have viewed the Intro to Product Ownership (on Youtube).
+          </div>
+
+        </div>
+
+        <div ng-show="isAmend && isAdmin">
+          <div class="padding-text">For office use only</div>
+
+          <div class="row">
+
+            <div class="form-group col-md-3">
+              <label for="projectId">Project ID:</label>
+              <div class="">
+                <input ng-disabled="isReadOnlyMode" type="text" class="form-control" data-ng-model="project.projectCode" id="projectId">
+              </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="projectStatus">Status:</label>
+
+              <div class="">
+                <select ng-disabled="isReadOnlyMode" class="form-control" data-ng-model="project.status" id="projectStatus" name="projectStatus"
+                        data-ng-options="projectStatus.lookupCode as projectStatus.description for projectStatus in projectStatuses">
+                  <option value="" disabled selected>Please select ...</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="productOwner">Owner:</label>
+
+              <div class="">
+                <input ng-disabled="isReadOnlyMode" type="text" class="form-control" data-ng-model="project.productOwner" id="productOwner">
+              </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <label for="technologyUsed">Technology used:</label>
+
+              <div class="">
+                <select ng-disabled="isReadOnlyMode" class="form-control" data-ng-model="project.techStack" id="technologyUsed"
+                        name="technologyUsed"
+                        data-ng-options="technology.lookupCode as technology.description for technology in technologies">
+                  <option value="" disabled selected>Please select ...</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-input-group">
+          <button ng-disabled="isReadOnlyMode" type="button" data-ng-show="showSubmitButton" data-ng-click="submit(requirementForm)" class="btn btn-warning btn-margin">Submit</button>
+          <button ng-disabled="isReadOnlyMode" type="submit" submit class="btn btn-primary btn-margin">Save</button>
+          <button type="button" data-ng-click="cancel()" class="btn btn-cancel btn-margin">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>

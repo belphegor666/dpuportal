@@ -1,0 +1,20 @@
+<main class="activate container" data-ng-controller="activateController">
+    <div class="col-md-offset-1 col-md-10 col-xs-12 container-border">
+        <div class="col-md-12 col-xs-12 container-margin-bottom">
+            <div data-ng-include="'../../component/background/agile-social.html'"></div>
+        </div>
+        <div class="col-md-6 col-xs-12 pull-right feature-border">
+            <div class="activate">
+                <div class="dialog">
+                    <div data-ng-class="{'alert alert-danger': hasError, 'alert alert-success message': !hasError}">{{message}}</div>
+                    <div class="form-group right pull-right" data-ng-show="!hasError">
+                        <button class="btn btn-primary" data-ng-click="goToLogin()">Go to Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <div data-ng-include="'../../component/background/agile-manifesto-left.html'"></div>
+        </div>
+    </div>
+</main>

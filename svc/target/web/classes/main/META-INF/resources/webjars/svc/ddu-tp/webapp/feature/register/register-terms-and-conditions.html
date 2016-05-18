@@ -1,0 +1,7 @@
+<main class="container terms-and-conditions" data-ng-controller="registerTermsAndConditionsController">
+    <div class="text">
+        <h1>{{termsAndConditionsHeading}}</h1>
+        <div ng-repeat="termsAndConditions in termsAndConditionsBody">{{termsAndConditions}}</div>
+        <button type="button" class="btn btn-primary pull-right" data-ng-click="back()">Back</button>
+    </div>
+</main>

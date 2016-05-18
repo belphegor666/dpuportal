@@ -1,0 +1,95 @@
+<main data-ng-controller="sprintFormController">
+  <header class="btn-group btn-breadcrumb">
+    <span class="btn btn-default">{{project.title}}</span>
+    <span data-ng-show="sprint.sprintNo" class="btn btn-default">Sprint {{sprint.sprintNo}}</span>
+    <span class="btn btn-success">{{headingText}}</span>
+  </header>
+  <div class="panel panel-default">
+    <form class="panel-body container" name="sprintForm"
+          data-ng-submit="saveSprint(sprintForm)" method="post" novalidate="novalidate">
+      <div class="row">
+        <!--left column-->
+        <div class="col-md-6">
+          <div class='row'>
+              <div class="form-group col-md-3">
+                  <label class="required" for="sprintNo">Sprint Number</label>
+                  <input type="text" class="form-control" data-ng-model="sprint.sprintNo" name="sprintNo" id="sprintNo" readonly>
+              </div>
+              <div class="form-group col-md-9">
+                  <label class="required" for="title">Title</label>
+                  <input type="text" class="form-control" data-ng-model="sprint.title" name="title" id="title" required>
+
+                  <div class="error" data-ng-show="hasValidationError && sprintForm.title.$error.required">
+                      Sprint Title is required
+                  </div>
+              </div>
+          </div>
+          <div class='form-group'>
+            <label class="required" for="description">Description</label>
+            <textarea class="form-control" rows="3" data-ng-model="sprint.description" id="description"
+                      name="description" required></textarea>
+
+            <div class="error" data-ng-show="hasValidationError && sprintForm.description.$error.required">
+              Please enter a description for the sprint
+            </div>
+          </div>
+        </div>
+        <!--right column-->
+        <div class="col-md-6">
+          <div class='form-group'>
+            <label class="required" for="startDate">Start Date</label>
+
+            <div class="input-group">
+              <input id="startDate" data-ng-click="openStartDate($event)" readonly type="date" class="form-control" required
+                     data-ng-model="sprint.startDate" name="startDate"
+                     uib-datepicker-popup="{{dateFormat}}"
+                     is-open="startDateOpened"
+                     max-date="maxDate"
+                     datepicker-options="dateOptions"
+                     date-disabled="disabled(date, mode)"
+                     show-button-bar="false">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" data-ng-click="openStartDate($event)"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+            <div class="error" data-ng-show="hasValidationError && sprintForm.startDate.$error.required">
+              Please enter the start date for the sprint
+            </div>
+          </div>
+          <div class='form-group'>
+            <label class="required" for="endDate">End Date</label>
+
+            <div class="input-group">
+              <input id="endDate" data-ng-click="openEndDate($event)" readonly type="date" class="form-control" required
+                     data-ng-model="sprint.endDate" name="endDate"
+                     uib-datepicker-popup="{{dateFormat}}"
+                     is-open="endDateOpened"
+                     max-date="maxDate"
+                     datepicker-options="dateOptions"
+                     date-disabled="disabled(date, mode)"
+                     show-button-bar="false">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" data-ng-click="openEndDate($event)"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+            <div class="form-group">
+              <div class="error" data-ng-show="hasValidationError && sprintForm.endDate.$error.required">
+                Please enter the end date for the sprint
+              </div>
+            </div>
+          </div>
+          <div class="alert alert-danger" data-ng-show="hasValidationError && sprint.endDate <= sprint.startDate">
+            Start Date must be before end date
+          </div>
+        </div>
+      </div>
+      <hr>
+      <footer class="row pull-right">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" data-ng-click="cancel(sprintForm)" class="btn btn-cancel">Cancel</button>
+      </footer>
+    </form>
+  </div>
+</main>

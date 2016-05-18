@@ -1,0 +1,170 @@
+<main class="project-results" data-ng-controller="projectController">
+    <header class="btn-group btn-breadcrumb">
+        <span class="btn btn-success">Current Projects</span>
+    </header>
+    <h3>Priority 1</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th class="col-md-2">
+                            Tech Stack
+                        </th>
+                        <th class="col-md-1">
+                            ID
+                        </th>
+                        <th class="col-md-5">
+                            Requirement
+                        </th>
+                        <th class="col-md-2">
+                            Priority &pound;m
+                        </th>
+                        <th class="col-md-2">
+                            Join / Leave
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-ng-repeat="project in projects | filter: {priority: 1} | orderBy:'-priorityValue' track by project.id">
+                        <td>
+                            {{project.techStack}}
+                        </td>
+                        <td>
+                            {{project.projectCode}}
+                        </td>
+                        <td>
+                            {{project.title}}
+                        </td>
+                        <td>
+                            {{project.priorityValue}}
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button data-ng-show="hasJoinedProject(project.id)" class="	btn btn-success btn-sm glyphicon glyphicon-user" title="Join Project"
+                                        data-ng-click="joinProject(project)"></button>
+                                <button data-ng-show="!hasJoinedProject(project.id)" class="btn btn-danger btn-sm glyphicon glyphicon-remove" title="Leave Project"
+                                        data-ng-click="leaveProject(project)"></button>
+
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <h3>Priority 2</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th class="col-md-2">
+                            Tech Stack
+                        </th>
+                        <th class="col-md-1">
+                            ID
+                        </th>
+                        <th class="col-md-5">
+                            Requirement
+                        </th>
+                        <th class="col-md-2">
+                            Priority &pound;m
+                        </th >
+                        <th class="col-md-2">
+                            Join / Leave
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-ng-repeat="project in projects | filter: {priority: 2} | orderBy:'-priorityValue' track by project.id">
+                        <td>
+                            {{project.techStack}}
+                        </td>
+                        <td>
+                            {{project.projectCode}}
+                        </td>
+                        <td>
+                            {{project.title}}
+                        </td>
+                        <td>
+                            {{project.priorityValue}}
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button data-ng-show="hasJoinedProject(project.id)" class="	btn btn-success btn-sm glyphicon glyphicon-user" title="Join Project"
+                                        data-ng-click="joinProject(project)"></button>
+                                <button data-ng-show="!hasJoinedProject(project.id)" class="btn btn-danger btn-sm glyphicon glyphicon-remove" title="Leave Project"
+                                        data-ng-click="leaveProject(project)"></button>
+
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <h3>Priority 3</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th class="col-md-2">
+                            Tech Stack
+                        </th>
+                        <th class="col-md-1">
+                            ID
+                        </th>
+                        <th class="col-md-5">
+                            Requirement
+                        </th>
+                        <th class="col-md-2">
+                            Priority &pound;
+                        </th>
+                        <th class="col-md-2">
+                            Join / Leave
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-ng-repeat="project in projects | filter: {priority: 3} | orderBy:'-priorityValue' track by project.id">
+                        <td>
+                            {{project.techStack}}
+                        </td>
+                        <td>
+                            {{project.projectCode}}
+                        </td>
+                        <td>
+                            {{project.title}}
+                        </td>
+                        <td>
+                            {{project.priorityValue}}
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button data-ng-show="hasJoinedProject(project.id)" class="	btn btn-success btn-sm glyphicon glyphicon-user" title="Join Project"
+                                        data-ng-click="joinProject(project)"></button>
+                                <button data-ng-show="!hasJoinedProject(project.id)" class="btn btn-danger btn-sm glyphicon glyphicon-remove" title="Leave Project"
+                                        data-ng-click="leaveProject(project)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-info" data-ng-show="noProjectsFound">
+        There are no projects with a current sprint available at the moment. Please check back later.
+    </div>
+
+</main>

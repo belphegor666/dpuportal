@@ -1,0 +1,46 @@
+@image-path: "../../resource/image";
+
+.home {
+  header {
+    .nav-tabs {
+      padding: 10px 5px 0 150px;
+      background: #01507A url("@{image-path}/atos-logo-trans-bg.png") no-repeat 10px center;
+      background-size: 108px 40px;
+
+      a {
+        cursor: pointer;
+        color: white;
+      }
+
+      .navbar-right {
+        margin-right: 0px;
+      }
+
+      .active a, a:hover, .open a {
+        color: black !important;
+      }
+    }
+    margin-bottom: 10px;
+  }
+}
+
+//flex is only compatible with new browsers, but will fail gracefully on incompatible ones.
+
+.flex-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.flex-header {
+    flex: none;
+}
+
+.flex-footer {
+    flex: none;
+}
+
+.flex-content {
+    flex: 1 0 auto;
+    width: 100%;
+}

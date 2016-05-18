@@ -1,0 +1,49 @@
+<div data-ng-controller="showcaseController">
+  <header>
+    <div class="btn-group btn-breadcrumb">
+      <span class="btn btn-success">Digital Prototyping Unit Showcase</span>
+    </div>
+  </header>
+
+<hr>
+
+<section id="content">
+
+  <div class="container clearfix">
+
+    <ul id="portfolio-filter" class="list-inline">
+      <li ng-class="{active:item == 'All'}"><a href="#" ng-click="item = 'All'">All</a></li>
+      <li ng-class="{active:item == 'Customer Experience'}"><a href="#" ng-click="item = 'Customer Experience'">Customer Experience</a></li>
+      <li ng-class="{active:item == 'Business Reinvention'}"><a href="#" ng-click="item = 'Business Reinvention'">Business Reinvention</a></li>
+      <li ng-class="{active:item == 'Operational Excellence'}"><a href="#" ng-click="item = 'Operational Excellence'">Operational Excellence</a></li>
+      <li ng-class="{active:item == 'Cyber Security'}"><a href="#" ng-click="item = 'Cyber Security'">Cyber Security</a></li>
+    </ul>
+
+    <section id="portfolio-items">
+
+      <div data-ng-repeat="article in articles">
+        <div class="col-md-3 col-xs-12" data-ng-show="showCategory(article.category)">
+          <article>
+            <div class="img-overflow">
+              <a href="" data-ng-click="showMedia(article.mediaUrl)">
+                <img data-ng-src="{{article.imageUrl}}" class="img-responsive">
+              </a>
+            </div>
+            <div class="item-content">
+              <a href="" class="project-meta" data-ng-click="navigateToPage(article.pageUrl)">
+                <div class="item-text">
+                  <h6 class="title">{{article.title}}</h6>
+                  <div>{{article.description}}</div>
+                </div>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</section>
+
+</div>

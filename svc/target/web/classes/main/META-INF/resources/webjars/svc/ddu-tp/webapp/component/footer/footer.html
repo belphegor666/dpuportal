@@ -1,0 +1,53 @@
+<footer class="footer-atos" data-ng-controller="footerController">
+    <div class="container">
+        <div class="footer-padding col-md-offset-1 col-md-10 row">
+            <div class="col-md-3">
+                <div class="title">About Us</div>
+                <div class="body">
+                    Atos is a leading provider of Digital Transformation including digital development and integration.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="title">Recent Posts</div>
+                <div data-ng-repeat="recentPost in recentPosts">
+                    <div class="body">
+                        <a href="{{recentPost.link}}" target="_blank" class="link">
+                            <div class="col-xs-1 no-padding"><i class="fa fa-angle-right"></i></div>
+                            <div class="col-xs-11 no-padding">{{recentPost.summary}}</div>
+                        </a>
+                    </div>
+                    <div class="date col-xs-offset-1 col-xs-11 no-padding">
+                        {{recentPost.date}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="title">Tag Cloud</div>
+                <div data-ng-repeat="tag in tagCloud" class="btn-group">
+                    <a href="{{tag.link}}" target="_blank" class="link">
+                        <button type="button" class="btn btn-style">{{tag.name}}</button>
+                    </a>
+                </div>
+                <div class="title">Social Links</div>
+                <div>
+                    <a title="Twitter" class="btn btn-info logo" target="_blank" href="https://twitter.com/Atos"><i class="fa fa-lg fa-twitter"></i></a>
+                    <a title="Youtube" class="btn btn-danger logo" target="_blank" href="https://www.youtube.com/user/Atos"><i class="fa fa-lg fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="title">Photo Stream</div>
+                <div>
+                    <a href="https://ascent.atos.net" target="_blank">
+                        <img src="../../resource/image/logo-ascent.png" alt="Ascent Journey 2018" class="img-responsive max-size">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-1 col-md-10 row">
+            <div class="copyright">
+                <span>Copyright © 2015. <a href="http://atos.net" target="_blank" class="link">Atos</a>. All rights reserved</span>
+                <span class="pull-right">Powered by <a href="http://atos.net" target="_blank" class="link">Atos Business Technologists</a></span>
+            </div>
+        </div>
+    </div>
+</footer>

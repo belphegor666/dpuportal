@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <user email="approver@example.com" password="$2a$10$EzldIlCMvDQ2uxgaPJR7LepnwNnyHgNYSiJ7.lub0Msvw9dbzk1qy" activation_key="abc123" />
+    <user user_id="2" email="activated@example.com" password="$2a$10$EzldIlCMvDQ2uxgaPJR7LepnwNnyHgNYSiJ7.lub0Msvw9dbzk1qy" activated='true' activation_key="cde123" />
+    <user email="unactivated@example.com" password="$2a$10$EzldIlCMvDQ2uxgaPJR7LepnwNnyHgNYSiJ7.lub0Msvw9dbzk1qy" activated='false' activation_key="def123" />
+    <whitelist id="1" domain_name="example.com" />
+</dataset>

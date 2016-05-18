@@ -1,0 +1,25 @@
+<div class="modal-content">
+    <div class="modal-header ">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title">Choose your job role for this sprint</h4>
+    </div>
+    <form name="jobRoleForm" data-ng-submit="joinSprint(jobRoleForm)" novalidate>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="input-group-btn">
+                    <input type="text" class="form-control" data-toggle="dropdown" id="role" name="role" ng-model="role" autocomplete="off" aria-label="Job Role" required>
+                    <ul class="dropdown-menu dropdown-menu-left" role="menu">
+                        <li ng-repeat="role in jobRoles"><a href="#" ng-click="changeRole(role)">{{role}}</a></li>
+                    </ul>
+                </div>
+                <div class="error" data-ng-show="hasValidationError && jobRoleForm.role.$error.required">You must select a role</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="btn-toolbar">
+                <button type="submit" class="btn btn-success pull-right">Join Sprint</button>
+                <button type="button" class="btn btn-warning pull-right" data-ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

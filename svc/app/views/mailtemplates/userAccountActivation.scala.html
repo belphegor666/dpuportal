@@ -1,0 +1,26 @@
+@import net.atos.tenderingportal.domain.model.User
+@(user: User, baseUrl: String)
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Atos Tendering Portal account activation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <p>
+            Dear @user.getFirstName
+        </p>
+        <p>
+            Your account has been created, please click on the URL below to activate it:
+        </p>
+        <p>
+            <a href="@baseUrl/#/activate?key=@user.getActivationKey">Activation Link</a>
+        </p>
+        <p>
+            <em>This automatic notification was sent by the Atos Tendering Portal. Please do not reply to this
+                e-mail.</em>
+        </p>
+    </body>
+</html>

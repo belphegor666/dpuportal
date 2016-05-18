@@ -1,0 +1,45 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+POST          /api/account/register                   @net.atos.tenderingportal.application.controller.AccountController.registerUser
+PUT           /api/account/activate                   @net.atos.tenderingportal.application.controller.AccountController.activateUser(key)
+POST          /api/account/login                      @net.atos.tenderingportal.application.controller.AccountController.login
+POST          /api/account/forgot-password            @net.atos.tenderingportal.application.controller.AccountController.forgotPassword
+POST          /api/account/change-password            @net.atos.tenderingportal.application.controller.AccountController.changePassword
+POST          /api/account/user-preference            @net.atos.tenderingportal.application.controller.UserController.saveUserPreference
+POST          /api/account/user-details               @net.atos.tenderingportal.application.controller.UserController.editAccountDetails
+POST          /api/projects                           @net.atos.tenderingportal.application.controller.ProjectController.createProject
+GET           /api/projects                           @net.atos.tenderingportal.application.controller.ProjectController.getProjects(currentSprint: java.lang.Boolean ?= null, productOwner: java.lang.Boolean ?= null)
+GET           /api/projects/:selectedDate             @net.atos.tenderingportal.application.controller.ProjectController.getProjectsWithTeams(selectedDate: Long)
+DELETE        /api/projects/:id                       @net.atos.tenderingportal.application.controller.ProjectController.cancelProject(id: Long)
+PUT           /api/projects                           @net.atos.tenderingportal.application.controller.ProjectController.updateProject
+POST          /api/projects/:projectId/sprints        @net.atos.tenderingportal.application.controller.SprintController.createSprintForProject(projectId: Long)
+GET           /api/projects/:projectId/sprints        @net.atos.tenderingportal.application.controller.SprintController.getAllSprintsForProject(projectId: Long)
+PUT           /api/sprints                            @net.atos.tenderingportal.application.controller.SprintController.updateSprint
+POST          /api/sprints/:sprintId/members          @net.atos.tenderingportal.application.controller.SprintController.addMemberToSprint(sprintId: Long)
+DELETE        /api/sprints/:sprintId/members          @net.atos.tenderingportal.application.controller.SprintController.removeMemberFromSprint(sprintId: Long)
+
+GET           /api/users/:userId/projects             @net.atos.tenderingportal.application.controller.UserController.findProjectsAssignedToUser(userId: Long)
+GET           /api/users/:userId/stories              @net.atos.tenderingportal.application.controller.UserController.findStoriesAssignedToUser(userId: Long)
+
+GET           /api/sprints/:sprintId/stories          @net.atos.tenderingportal.application.controller.StoryController.getAllStoriesForSprint(sprintId: Long)
+POST          /api/sprints/:sprintId/stories          @net.atos.tenderingportal.application.controller.StoryController.createStory(sprintId: Long)
+PUT           /api/sprints/:sprintId/stories          @net.atos.tenderingportal.application.controller.StoryController.updateStory(sprintId: Long)
+DELETE        /api/stories/:storyId                   @net.atos.tenderingportal.application.controller.StoryController.deleteStory(storyId: Long)
+
+GET           /api/release-history                    @net.atos.tenderingportal.application.controller.ReleaseHistoryController.listAll
+GET           /api/teamCsvDownload/:selectedDate      @net.atos.tenderingportal.application.controller.ProjectController.generateProjectTeamCSV(selectedDate: Long)
+GET           /api/reference-data/codebook            @net.atos.tenderingportal.application.controller.ReferenceDataController.getCodeBook
+
+GET           /api/showcase                           @net.atos.tenderingportal.application.controller.ShowcaseController.getAllShowcases
+
+GET           /api/users/:userId/certifications       @net.atos.tenderingportal.application.controller.UserController.findUserCertifications(userId: Long)
+POST          /api/users/:userId/certifications       @net.atos.tenderingportal.application.controller.UserController.createUserCertification(userId: Long)
+
+
+GET           /                                       controllers.Assets.at(path="/public/webapp", file="index.html")
+
+# Map static resources from the /public folder to the /assets URL path
+GET           /*file                                  controllers.Assets.versioned(path="/public/webapp", file: Asset)

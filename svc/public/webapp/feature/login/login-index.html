@@ -1,0 +1,44 @@
+<main class="login container" data-ng-controller="loginController">
+  <div class="col-md-offset-1 col-md-10 col-xs-12 container-border">
+    <div class="col-md-12 col-xs-12 container-margin-bottom">
+      <div data-ng-include="'../../component/background/agile-social.html'"></div>
+    </div>
+    <div class="col-md-6 col-xs-12 pull-right feature-border">
+      <form name="loginForm" data-ng-submit="login(loginForm)" method="post" novalidate="novalidate">
+        <header class="sr-only">Atos Logo</header>
+        <div class="form-group required">
+          <label class="sr-only" for="username">User Name</label>
+          <input class="form-control" type="text" id="username" name="username" data-ng-model="credentials.username" placeholder="User Name (email address)" required autofocus>
+
+          <div class="error" data-ng-show="hasValidationError && loginForm.username.$error.required">
+            {{$$errorText.EMPTY_USERNAME}}
+          </div>
+        </div>
+        <div class="form-group required">
+          <label class="sr-only" for="password">Password</label>
+          <input class="form-control" type="password" data-ng-model="credentials.password" id="password" name="password" placeholder="Password" required>
+
+          <div class="error" data-ng-show="hasValidationError && loginForm.password.$error.required">
+            {{$$errorText.EMPTY_PASSWORD}}
+          </div>
+        </div>
+        <div class="alert alert-danger" data-ng-show="hasAuthenticationError">
+          {{$$errorText.INVALID_CREDENTIALS}}
+        </div>
+        <div class="form-group right">
+          <span class="pull-left">
+            <button class="btn btn-info" type="button" data-ng-click="forgotPassword()">Forgot Password</button>
+          </span>
+          <span>
+            <button class="btn btn-info" type="button" data-ng-click="register()">Register</button>
+            <button class="btn btn-primary" type="submit">Login</button>
+          </span>
+        </div>
+        <div class="copyright">(C) 2015 ATOS</div>
+      </form>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <div data-ng-include="'../../component/background/agile-manifesto-left.html'"></div>
+    </div>
+  </div>
+</main>

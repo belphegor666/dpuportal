@@ -1,0 +1,34 @@
+<main data-ng-controller="userHomepagePreferencesController">
+    <header class="btn-group btn-breadcrumb">
+        <span class="btn btn-info">Settings</span>
+    </header>
+
+    <div class="panel panel-default">
+        <form class="panel-body container" name="userPreferenceForm" data-ng-submit="saveUserPreferences(userPreferenceForm)" method="post" novalidate="novalidate">
+        <div class="row">
+                <div class="col-md-6">
+                    <div class='form-group'>
+                        <label class="" for="homepage">Home Page Preference: </label>
+                        <select data-ng-model="userPreferences.homePagePreference" data-ng-change="preferenceChange()" name="homepage" id="homepage">
+                            <option data-ng-repeat="homepage in homepages" value="{{homepage.id}}">{{homepage.name}}</option>
+                        </select>
+
+                        <div data-ng-show="preferenceSaved">Homepage Preference has been saved</div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary pull-left">Save</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+
+</main>

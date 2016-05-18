@@ -1,0 +1,120 @@
+<main data-ng-controller="requirementsDashboardController">
+
+    <header>
+        <div class="btn-group btn-breadcrumb">
+            <span class="btn btn-success">My Prototypes</span>
+        </div>
+        <button type="button" class="btn btn-xs btn-primary pull-right" title="Create new requirement"
+                data-ng-click="createRequirement()"><i class="glyphicon glyphicon-plus"></i> Create a new Requirement
+        </button>
+    </header>
+
+    <div data-ng-include="'../../../component/requirement-dashboard/requirement-dashboard.html'"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Requirement
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            Revenue £m
+                        </th>
+                        <th>
+                            Margin £m
+                        </th>
+                        <th>
+                            Cost £m
+                        </th>
+                        <th>
+                            Efficiency (days)
+                        </th>
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-ng-repeat="requirement in projects | orderBy:'name' track by requirement.id"
+                        data-ng-controller="requirementItemController" >
+                        <td>
+                            <div ng-if="requirement.projectCode">
+                                {{requirement.projectCode}}
+                            </div>
+                        </td>
+                        <td>
+                            {{requirement.title}}
+                        </td>
+
+                        <td>
+                            {{requirement.statusDescription}}
+                        </td>
+                        <td>
+                            {{requirement.revenue}}
+                        </td>
+                        <td>
+                            {{requirement.margin}}
+                        </td>
+                        <td>
+                            {{requirement.costSavings}}
+                        </td>
+                        <td>
+                            {{requirement.efficiency}}
+                        </td>
+                        <td>
+                          <div class="btn-toolbar">
+                          <!-- <button ng-hide="requirement.status=='CANCELLED'" class="btn btn-danger btn-sm glyphicon glyphicon-remove" title="Cancel this Requirement"
+                                                                      data-ng-click="delete()"></button>-->
+                          <button class="btn btn-info btn-sm glyphicon glyphicon-pencil" title="Amend this Requirement"
+                                  data-ng-click="amend()"></button>
+                          <button class="btn btn-warning btn-sm glyphicon glyphicon-file" title="Documents"
+                                      data-ng-click="manageDocumentRepository()"></button>
+                          <button ng-hide="requirement.status==$$refdata.PROJECT_STATUS.DRAFT" class="btn btn-default btn-sm glyphicon icon-sprint" title="Manage Sprints for this project"
+                                  data-ng-click="manageSprints()"></button>
+                          </div>
+                      </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td>
+                            <b>Totals</b>
+                        </td>
+                        <td>
+                            <!--No IDs total-->
+                        </td>
+                        <td>
+                            <!--No status total-->
+                        </td>
+                        <td>
+                            <b>{{revenueTotal}}</b>
+                        </td>
+                        <td>
+                            <b>{{marginTotal}}</b>
+                        </td>
+                        <td>
+                            <b>{{costTotal}}</b>
+                        </td>
+                        <td>
+                            <b>{{efficiencyTotal}}</b>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</main>
